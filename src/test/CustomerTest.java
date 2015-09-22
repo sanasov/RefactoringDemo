@@ -36,9 +36,32 @@ public class CustomerTest {
 	}
 
 	@Test(timeout = 1000)
-	public void WhenRentalIsNullstest() {
+	public void Maintest() {
 		String statement = who.Statement();
+		assertEquals(expected, actual);
 		System.out.println(statement);
+	}
+	
+	
+	@Test(timeout = 2000)
+	public void ResultNotNullWhenRentalIsNullstest() {
+		Customer who = new Customer("Who");
+		// Create rentals
+		Rental rental1 = null;
+		String resultActual = who.Statement();
+		resultExpected = "Rental record for " + m_Name + "\n";
+		assertEquals(resultExpected, resultActual);
+		thrown.expect(NullPointerException.class);
+	}
+
+	@Test(timeout = 2000)
+	public void ResultNotNullWhenRentalDaysIsNullstest() {
+		Customer who = new Customer("Who");
+		// Create rentals
+		Rental rental1 = new Rental(movCinderella, 0);
+		String resultActual = who.Statement();
+		resultExpected = "Rental record for " + m_Name + "\n";
+		assertEquals(resultExpected, resultActual);
 	}
 
 }
