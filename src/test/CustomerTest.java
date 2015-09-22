@@ -18,14 +18,16 @@ public class CustomerTest {
 		Movie movGladiator = new Movie("Gladiator", PriceCodes.NewRelease);
 
 		// Create customers
-		Customer custMickeyMouse = new Customer("Mickey Mouse");
-		Customer custDonaldDuck = new Customer("Donald Duck");
-		Customer custMinnieMouse = new Customer("Minnie Mouse");
+		Customer who = new Customer("Who");
 
 		// Create rentals
 		Rental rental1 = new Rental(movCinderella, 0);
-		Rental rental2 = new Rental(movStarWars, 0);
-		Rental rental3 = new Rental(movGladiator, 0);
+		Rental rental2 = new Rental(movStarWars, 3);
+		Rental rental3 = new Rental(movGladiator, 4);
+		
+		who.addRental(rental1);
+		who.addRental(rental2);
+		who.addRental(rental3);
 
 	}
 
@@ -33,10 +35,10 @@ public class CustomerTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
+	@Test(timeout = 1000)
 	public void WhenRentalIsNullstest() {
-		
-		
+		String statement = who.Statement();
+		System.out.println(statement);
 	}
 
 }
