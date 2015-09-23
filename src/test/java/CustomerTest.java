@@ -103,8 +103,8 @@ public class CustomerTest {
 		Assertions.assertThat(result).isNotEmpty()
 									 .contains("Rental record for " + sut.getName() + "\n");
 		
-		verify(mockMov).getPriceCode();
-		verify(mockMov).getTitle();
+		verify(mockMov, atLeastOnce()).getPriceCode();
+		verify(mockMov, atLeastOnce()).getTitle();
 		
 		
 	}
