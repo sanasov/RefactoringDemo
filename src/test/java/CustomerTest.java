@@ -1,12 +1,19 @@
-package test;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import junit.framework.TestCase;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.scrumtrek.simplestore.*;
+
+import static org.mockito.Mockito.*;
+import  org.fest.assertions.*;
 
 
 public class CustomerTest {
@@ -35,16 +42,16 @@ public class CustomerTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test(timeout = 1000)
+/*	@Test(timeout = 1000)
 	public void Maintest() {
 		String statement = who.Statement();
-		assertEquals(expected, actual);
+		//assertEquals(expected, actual);
 		System.out.println(statement);
-	}
+	}*/
 	
 	
-	@Test(timeout = 2000)
-	public void ResultNotNullWhenRentalIsNullstest() {
+/*	@Test(timeout = 2000)
+	public void ShouldResultNotNullWhenRentalIsNullstest() {
 		Customer who = new Customer("Who");
 		// Create rentals
 		Rental rental1 = null;
@@ -52,16 +59,31 @@ public class CustomerTest {
 		resultExpected = "Rental record for " + m_Name + "\n";
 		assertEquals(resultExpected, resultActual);
 		thrown.expect(NullPointerException.class);
-	}
+	}*/
 
-	@Test(timeout = 2000)
-	public void ResultNotNullWhenRentalDaysIsNullstest() {
+/*	@Test(timeout = 2000)
+	public void ShouldResultNotNullWhenRentalDaysIsNullstest() {
 		Customer who = new Customer("Who");
 		// Create rentals
 		Rental rental1 = new Rental(movCinderella, 0);
 		String resultActual = who.Statement();
-		resultExpected = "Rental record for " + m_Name + "\n";
+		String resultExpected = "Rental record for " + m_Name + "\n";
 		assertEquals(resultExpected, resultActual);
+	}*/
+	
+	@Test//(timeout = 20000)
+	public void statementTest() {
+		Customer sut = new Customer("Sut");
+		//Movie mockMov = mock(Movie.class);
+		Movie movStarWars = new Movie("Star Wars", PriceCodes.Regular);
+		Rental rental1 = new Rental(movStarWars, 1);
+		sut.addRental(rental1);
+		//when
+		//when(sut.Statement()).thenReturn("first");
+		String result = sut.Statement();
+		Assertions.assertThat(result).isNotEmpty();
+		
 	}
+	
 
 }
