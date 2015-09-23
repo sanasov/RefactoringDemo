@@ -81,9 +81,27 @@ public class CustomerTest {
 		//when
 		//when(sut.Statement()).thenReturn("first");
 		String result = sut.Statement();
-		Assertions.assertThat(result).isNotEmpty();
+		Assertions.assertThat(result).isNotEmpty()
+									 .contains("Rental record for " + sut.getName() + "\n");
 		
 	}
 	
+	public void MockObjTest() {
+		Customer sut = new Customer("Sut");
+		Movie mockMov = mock(Movie.class);
+		//Movie movStarWars = new Movie("Star Wars", PriceCodes.Regular);
+		when(mockMov.getTitle()).thenReturn("Star Wars");
+		when(mockMov.getPriceCode()).thenReturn(PriceCodes.Regular);
+		
+		Rental rental1 = new Rental(mockMov, 1);
+		
+		sut.addRental(rental1);
+		//when
+		//when(sut.Statement()).thenReturn("first");
+		String result = sut.Statement();
+		Assertions.assertThat(result).isNotEmpty()
+									 .contains("Rental record for " + sut.getName() + "\n");
+		
+	}
 
 }
