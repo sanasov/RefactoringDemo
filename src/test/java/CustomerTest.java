@@ -71,7 +71,7 @@ public class CustomerTest {
 		assertEquals(resultExpected, resultActual);
 	}*/
 	
-	@Test//(timeout = 20000)
+	@Test(timeout = 2000)
 	public void statementTest() {
 		Customer sut = new Customer("Sut");
 		//Movie mockMov = mock(Movie.class);
@@ -86,6 +86,7 @@ public class CustomerTest {
 		
 	}
 	
+	@Test(timeout = 2000)
 	public void MockObjTest() {
 		Customer sut = new Customer("Sut");
 		Movie mockMov = mock(Movie.class);
@@ -101,6 +102,10 @@ public class CustomerTest {
 		String result = sut.Statement();
 		Assertions.assertThat(result).isNotEmpty()
 									 .contains("Rental record for " + sut.getName() + "\n");
+		
+		verify(mockMov).getPriceCode();
+		verify(mockMov).getTitle();
+		
 		
 	}
 
